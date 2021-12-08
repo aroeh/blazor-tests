@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace blazor_app.playwright.e2e_tests
 {
-    public class ChromiumTestBrowser : IPlaywrightBrowser
+    public class WebkitTestBrowser : IPlaywrightBrowser
     {
         private IPlaywright driver;
         public IPlaywright PlaywrightDriver => driver;
@@ -19,14 +19,14 @@ namespace blazor_app.playwright.e2e_tests
 
         public BrowserTypeLaunchOptions LaunchOptions => new()
         {
-            Headless = false,
+            //Headless = false,
             SlowMo = 50
         };
 
         public async Task Setup()
         {
             driver = await Playwright.CreateAsync();
-            browser = await driver.Chromium.LaunchAsync();
+            browser = await driver.Webkit.LaunchAsync(LaunchOptions);
             page = await browser.NewPageAsync();
         }
     }

@@ -5,11 +5,17 @@ namespace blazor_app.playwright.e2e_tests
 {
     public class FirefoxTestBrowser : IPlaywrightBrowser
     {
-        public IPlaywright PlaywrightDriver { get; set; }
+        private IPlaywright driver;
+        public IPlaywright PlaywrightDriver => driver;
 
-        public IBrowser Browser { get; set; }
+        private IBrowser browser;
+        public IBrowser Browser => browser;
 
-        public IPage Page { get; set; }
+        private IBrowserContext context;
+        public IBrowserContext Context => context;
+
+        private IPage page;
+        public IPage Page => page;
 
         public BrowserTypeLaunchOptions LaunchOptions => new()
         {
@@ -19,9 +25,10 @@ namespace blazor_app.playwright.e2e_tests
 
         public async Task Setup()
         {
-            PlaywrightDriver = await Playwright.CreateAsync();
-            Browser = await PlaywrightDriver.Firefox.LaunchAsync();
-            Page = await Browser.NewPageAsync();
+            driver = await Playwright.CreateAsync();
+            browser = await driver.Firefox.LaunchAsync();
+            context = await browser.NewContextAsync(new BrowserNewContextOptions { IgnoreHTTPSErrors = true });
+            page = await context.NewPageAsync();
         }
     }
 }

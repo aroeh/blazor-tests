@@ -5,11 +5,13 @@ namespace blazor_app.playwright.e2e_tests
 {
     public interface IPlaywrightBrowser
     {
-        IPlaywright PlaywrightDriver { get; set; }
+        IPlaywright PlaywrightDriver { get; }
 
-        IBrowser Browser { get; set; }
+        IBrowser Browser { get; }
 
-        IPage Page { get; set; }
+        IBrowserContext Context { get; }
+
+        IPage Page { get; }
 
         BrowserTypeLaunchOptions LaunchOptions { get; }
 

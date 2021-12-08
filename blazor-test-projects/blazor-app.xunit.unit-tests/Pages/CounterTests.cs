@@ -6,8 +6,6 @@ namespace blazor_app.xunit.unit_tests.Pages
 {
     public class CounterTests
     {
-        private const string h1Elem = "h1";
-        private const string pElem = "p";
         private const string counter = "Counter";
         private const string currentCount = "Current count: ";
 
@@ -19,7 +17,8 @@ namespace blazor_app.xunit.unit_tests.Pages
             var cut = ctx.RenderComponent<Counter>();
 
             //Act
-            var paramElem = cut.Find(h1Elem);
+            //Can find an element in a couple of ways: by element ex h1, or by id which requires #<id>
+            var paramElem = cut.Find("#page-header");
             var paramElemText = paramElem.TextContent;
 
             //Assert
@@ -35,7 +34,7 @@ namespace blazor_app.xunit.unit_tests.Pages
             var cut = ctx.RenderComponent<Counter>();
 
             //Act
-            var paramElem = cut.Find(pElem);
+            var paramElem = cut.Find("#current-count");
             var paramElemText = paramElem.TextContent;
 
             //Assert
@@ -51,8 +50,8 @@ namespace blazor_app.xunit.unit_tests.Pages
             var cut = ctx.RenderComponent<Counter>();
 
             //Act
-            var paramElem = cut.Find(pElem);
-            cut.Find("button").Click();
+            var paramElem = cut.Find("#current-count");
+            cut.Find("#btn-count").Click();
             var paramElemText = paramElem.TextContent;
 
             //Assert
