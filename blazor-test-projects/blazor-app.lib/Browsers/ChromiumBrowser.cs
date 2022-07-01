@@ -19,7 +19,7 @@ namespace blazor_app.lib.Browsers
 
         public BrowserTypeLaunchOptions LaunchOptions => new()
         {
-            Headless = false,
+            //Headless = false,
             SlowMo = 50
         };
 

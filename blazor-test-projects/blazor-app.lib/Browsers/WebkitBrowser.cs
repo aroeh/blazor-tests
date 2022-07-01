@@ -27,8 +27,8 @@ namespace blazor_app.lib.Browsers
         {
             driver = await Playwright.CreateAsync();
             browser = useOptions
-                ? await driver.Chromium.LaunchAsync(LaunchOptions)
-                : await driver.Chromium.LaunchAsync();
+                ? await driver.Webkit.LaunchAsync(LaunchOptions)
+                : await driver.Webkit.LaunchAsync();
             context = await browser.NewContextAsync(new BrowserNewContextOptions { IgnoreHTTPSErrors = true });
             page = await context.NewPageAsync();
         }
