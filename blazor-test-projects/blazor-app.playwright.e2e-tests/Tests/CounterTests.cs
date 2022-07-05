@@ -7,7 +7,7 @@ namespace blazor_app.playwright.e2e_tests.Tests
 {
     [TestFixture(typeof(ChromiumBrowser))]
     [TestFixture(typeof(FirefoxBrowser))]
-    [TestFixture(typeof(WebkitBrowser))]
+    //[TestFixture(typeof(WebkitBrowser))]
     public class CounterTests<TBrowser> where TBrowser : IPlaywrightBrowser, new()
     {
         private IPlaywrightBrowser browser;
@@ -19,7 +19,7 @@ namespace blazor_app.playwright.e2e_tests.Tests
         {
             componentUrl = $"{TestContext.Parameters["appUrl"]}{route}";
             browser = new TBrowser();
-            await browser.Setup();
+            await browser.Setup(true);
             await browser.Page.GotoAsync(componentUrl);
         }
 

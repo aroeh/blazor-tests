@@ -19,8 +19,8 @@ namespace blazor_app.lib.Browsers
 
         public BrowserTypeLaunchOptions LaunchOptions => new()
         {
-            //Headless = false,
-            SlowMo = 50
+            Headless = false,
+            SlowMo = 500
         };
 
         public async Task Setup(bool useOptions = false)
