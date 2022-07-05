@@ -31,7 +31,7 @@ This project is a demonstration of learning for testing frameworks specific to B
 
 # Key Libraries and Downloads
 - .Net 6.0
-- Microsoft Playwright CLI
+- Playwright v1.23
 - dotnet report generator
 
 # Getting Started
