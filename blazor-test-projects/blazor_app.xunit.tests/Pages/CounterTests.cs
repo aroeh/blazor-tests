@@ -2,7 +2,6 @@
 
 namespace blazor_app.xunit.tests.Pages
 {
-    //Tests can also be written in razor component .razor files
     public class CounterTests
     {
         private const string counter = "Counter";
@@ -16,12 +15,6 @@ namespace blazor_app.xunit.tests.Pages
 
             //Example Mock Service
             //ctx.Services.AddSingleton<IWeatherForecaseService>(new WeatherForecastService);
-
-            //Use Context to render a renderfragment
-            //var cut = ctx.Render( @<HelloWorld HelloText = "Hi there World!"> );
-            //HelloText is a parameter property of the HelloWorld component
-            //You can also test against the renderfragment
-            //cut.MarkupMatches( @<h1>Hi there World!</h1> );
 
             var cut = ctx.RenderComponent<Counter>();
 
