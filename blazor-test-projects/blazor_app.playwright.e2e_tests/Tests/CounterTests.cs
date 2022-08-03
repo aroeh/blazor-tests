@@ -7,7 +7,6 @@ namespace blazor_app.playwright.e2e_tests.Tests
 {
     [TestFixture(typeof(ChromiumBrowser))]
     [TestFixture(typeof(FirefoxBrowser))]
-    //[TestFixture(typeof(WebkitBrowser))]
     public class CounterTests<TBrowser> where TBrowser : IPlaywrightBrowser, new()
     {
         private IPlaywrightBrowser browser;

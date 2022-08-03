@@ -39,7 +39,9 @@ This project is a demonstration of learning for testing frameworks specific to B
 2.	Install optional tools if desired
 3.	Install .Net 6.0 framework if it is not already installed on the workstation
 4.  Install the latest version of the Playwright CLI: `dotnet tool install --global Microsoft.Playwright.CLI`
-5.  Optional - For Code Coverage Install the Report Generator: `dotnet tool install -g dotnet-reportgenerator-globaltool`
+5.  Build the solution and all projects
+6.  Run the command to install Playwright browsers and web drivers: `pwsh bin\Debug\netX\playwright.ps1 install`
+7.  Optional - For Code Coverage Install the Report Generator: `dotnet tool install -g dotnet-reportgenerator-globaltool`
 
 All other files and libraries will be included in the repository, so there is no need to download them or set them up
 
@@ -55,7 +57,7 @@ There are 3 projects in the solution:
 blazor-app should be the startup project and can be run through the IDE or via command line using the command `dotnet run`
 
 ## Unit Tests
-Unit tests are utilizing the XUnit project template and runner adapters.
+Unit tests are utilizing the XUnit project template and runner adapters.  The unit test project was created using the bUnit project template
 
 There are a few options to run the tests:
 1. Using the Visual Studio Text Explorer

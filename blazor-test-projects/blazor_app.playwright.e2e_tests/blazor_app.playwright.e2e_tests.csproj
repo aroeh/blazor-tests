@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\blazor-app.lib\blazor-app.lib.csproj" />
+    <ProjectReference Include="..\blazor_app.lib\blazor_app.lib.csproj" />
   </ItemGroup>
 
 </Project>
