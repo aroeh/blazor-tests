@@ -3,17 +3,17 @@
 
 <PageTitle>Weather forecast</PageTitle>
 
-<h1>Weather forecast</h1>
+<h1 id="page-header">Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
 @if (forecasts == null)
 {
-    <p><em>Loading...</em></p>
+    <p id="loading"><em>Loading...</em></p>
 }
 else
 {
-    <table class="table">
+    <table class="table" id="weather-table">
         <thead>
             <tr>
                 <th>Date</th>

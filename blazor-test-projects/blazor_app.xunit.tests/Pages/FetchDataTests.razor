@@ -1,0 +1,72 @@
+﻿@inherits TestContext
+
+@using RichardSzalay.MockHttp;
+@using static blazor_app.Pages.FetchData;
+
+These tests are written entirely in razor and C# syntax.
+
+Learn more at https://bunit.dev/docs/getting-started/writing-tests.html#creating-basic-tests-in-razor-files
+
+@code {
+    private const string pageHeader = "Weather forecast";
+
+    [Fact]
+    public void FetchData_H1Header_MarkupMatchesText()
+    {
+        //Arrange
+        using var ctx = new TestContext();
+        var mockHttpClient = ctx.Services.AddMockHttpClient();
+        var cut = ctx.Render(@<FetchData />);
+
+        //Act
+        //Can find an element in a couple of ways: by element ex h1, or by id which requires #<id>
+        var paramElem = cut.Find("#page-header");
+        var paramElemText = paramElem.TextContent;
+
+        //Assert
+        paramElemText.MarkupMatches(pageHeader);
+    }
+
+    [Fact]
+    public void FetchData_ForecastsOnInit_ShowsLoading()
+    {
+        //Arrange
+        using var ctx = new TestContext();
+        List<WeatherForecast> mockWeather = new()
+        {
+            new WeatherForecast(),
+            new WeatherForecast()
+        };
+        var mockHttpClient = ctx.Services.AddMockHttpClient();
+        mockHttpClient.When("/sample-data/weather.json").RespondJson(mockWeather);
+        var cut = ctx.Render(@<FetchData />);
+
+        //Act
+        var paramElem = cut.Find("#loading");
+        var paramElemText = paramElem.TextContent;
+
+        //Assert
+        paramElemText.MarkupMatches("Loading...");
+    }
+
+    [Fact]
+    public void FetchData_ForecastsOnInit_ReturnsCollection()
+    {
+        //Arrange
+        using var ctx = new TestContext();
+        List<WeatherForecast> mockWeather = new()
+        {
+            new WeatherForecast(),
+            new WeatherForecast()
+        };
+        var mockHttpClient = ctx.Services.AddMockHttpClient();
+        mockHttpClient.When("/sample-data/weather.json").RespondJson(mockWeather);
+        var cut = ctx.Render(@<FetchData />);
+
+        //Act
+        cut.WaitForState(() => cut.FindAll("td").Count > 0 );
+
+        //Assert
+        cut.WaitForAssertion(() => Assert.True(cut.Find("#weather-table").HasChildNodes));
+    }
+}
