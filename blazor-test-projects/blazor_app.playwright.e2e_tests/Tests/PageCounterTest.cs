@@ -2,17 +2,6 @@
 
 namespace blazor_app.playwright.e2e_tests.Tests
 {
-    /// <summary>
-    /// The page test is available in newer versions of Playwright
-    /// It relies on the testFixture objects to be set either in the .runsettings or via environment variables in the command line
-    /// For multi-browser support you will need to run the test each time
-    /// either pointing to a different browser specific runsettings file or specifying in the cli
-    /// dotnet test -- Playwright.BrowserName=chromium Playwright.LaunchOptions.Headless=false Playwright.LaunchOptions.Channel=msedge
-    /// dotnet test -- Playwright.BrowserName=chromium Playwright.LaunchOptions.Headless=false Playwright.LaunchOptions.Channel=chrome
-    /// dotnet test -- Playwright.BrowserName=firefox Playwright.LaunchOptions.Headless=false
-    /// 
-    /// The best practice is to choose one approach and not multiple
-    /// </summary>
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     public class PageCounterTest : PageTest
