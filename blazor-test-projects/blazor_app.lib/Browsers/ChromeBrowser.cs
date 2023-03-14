@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 
 namespace blazor_app.lib.Browsers
 {
-    public class WebkitBrowser : IPlaywrightBrowser
+    public class ChromeBrowser : IPlaywrightBrowser
     {
         private IPlaywright driver;
         public IPlaywright PlaywrightDriver => driver;
@@ -22,9 +22,12 @@ namespace blazor_app.lib.Browsers
         public BrowserTypeLaunchOptions LaunchOptions => new()
         {
             Headless = RunHeadless,
-            SlowMo = 500
+            Channel = "chrome"
         };
 
+        /// <summary>
+        /// Customized Browser Context Options for how to handle requests, session, etc...
+        /// </summary>
         public BrowserNewContextOptions ContextOptions => new()
         {
             IgnoreHTTPSErrors = true
@@ -34,7 +37,7 @@ namespace blazor_app.lib.Browsers
         {
             RunHeadless = headless;
             driver = await Playwright.CreateAsync();
-            browser = await driver.Webkit.LaunchAsync(LaunchOptions);
+            browser = await driver.Chromium.LaunchAsync(LaunchOptions);
             context = await browser.NewContextAsync(ContextOptions);
             page = await context.NewPageAsync();
         }

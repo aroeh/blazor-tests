@@ -1,29 +1,27 @@
-﻿using blazor_app.lib.Browsers;
-using blazor_app.lib.Interfaces;
-using NUnit.Framework;
-using System.Threading.Tasks;
-
-namespace blazor_app.playwright.e2e_tests.Tests
+﻿namespace blazor_app.playwright.e2e_tests.Tests
 {
-    [TestFixture(typeof(ChromiumBrowser))]
+    [TestFixture(typeof(EdgeBrowser))]
+    [TestFixture(typeof(ChromeBrowser))]
     [TestFixture(typeof(FirefoxBrowser))]
     public class CounterTests<TBrowser> where TBrowser : IPlaywrightBrowser, new()
     {
         private IPlaywrightBrowser browser;
         private const string route = "counter";
-        private string componentUrl;
+        private string componentUrl = string.Empty;
 
         [OneTimeSetUp]
         public async Task Setup()
         {
+            bool headlessBrowser;
+            bool.TryParse(TestContext.Parameters["headless"], out headlessBrowser);
             componentUrl = $"{TestContext.Parameters["appUrl"]}{route}";
             browser = new TBrowser();
-            await browser.Setup(true);
+            await browser.Setup(headlessBrowser);
             await browser.Page.GotoAsync(componentUrl);
         }
 
         [Test, Order(1)]
-        public void AppNavigatedToCounter()
+        public async Task AppNavigatedToCounter()
         {
             Assert.AreEqual(componentUrl, browser.Page.Url);
         }

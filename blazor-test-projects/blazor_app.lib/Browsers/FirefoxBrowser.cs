@@ -17,19 +17,25 @@ namespace blazor_app.lib.Browsers
         private IPage page;
         public IPage Page => page;
 
+        public bool RunHeadless { get; private set; }
+
         public BrowserTypeLaunchOptions LaunchOptions => new()
         {
-            Headless = false,
+            Headless = RunHeadless,
             SlowMo = 50
         };
 
-        public async Task Setup(bool useOptions = false)
+        public BrowserNewContextOptions ContextOptions => new()
         {
+            IgnoreHTTPSErrors = true
+        };
+
+        public async Task Setup(bool headless)
+        {
+            RunHeadless = headless;
             driver = await Playwright.CreateAsync();
-            browser = useOptions
-                ? await driver.Firefox.LaunchAsync(LaunchOptions)
-                : await driver.Firefox.LaunchAsync();
-            context = await browser.NewContextAsync(new BrowserNewContextOptions { IgnoreHTTPSErrors = true });
+            browser = await driver.Firefox.LaunchAsync(LaunchOptions);
+            context = await browser.NewContextAsync(ContextOptions);
             page = await context.NewPageAsync();
         }
     }

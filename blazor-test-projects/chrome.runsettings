@@ -4,4 +4,12 @@
     <Parameter name="appUrl" value="https://localhost:7083/" />
     <Parameter name="headless" value="false" />
   </TestRunParameters>
+  <Playwright>
+    <BrowserName>chromium</BrowserName>
+    <ExpectTimeout>5000</ExpectTimeout>
+    <LaunchOptions>
+      <Headless>false</Headless>
+      <Channel>chrome</Channel>
+    </LaunchOptions>
+  </Playwright>
 </RunSettings>
