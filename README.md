@@ -13,15 +13,14 @@ This project is a demonstration of learning for testing frameworks specific to B
     - Cross Browser Testing
 4. Bonus - Define a clean architecture and project structure for the app
 
-# Tools
-- IDE
-    - Visual Studio 2022 version 17.0.2 - Any edition (I used Community)
-- Browsers
-    - Microsoft Edge Version 94.0.992.38 (64 Bit)
-    - Google Chrome Version Version 94.0.4606.71 (64 Bit)
-- Optional
-    - Visual Studio Code version 1.62.3
-    - Powershell: I found it helpful to run the project using the command line and then execute the tests through the IDE
+# Software Dependencies
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) version 17.0.2 - Any edition (I used Community)
+- [Visual Studio Code](https://visualstudio.microsoft.com/#vscode-section) version 1.62.3
+- [Powershell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.3)
+- [Microsoft Edge](https://www.microsoft.com/en-us/edge/download?form=MA13FJ)
+- [Google Chrome](https://www.google.com/chrome/)
+- [Mozilla Firefox](https://www.mozilla.org/en-US/)
+    
 
 # Key Libraries and Downloads
 - .Net 6.0
