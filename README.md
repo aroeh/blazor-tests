@@ -31,15 +31,27 @@ This project is a demonstration of learning for testing frameworks specific to B
 1.	Ensure that you have all required tools installed - Visual Studio or VS Code
 2.	Install optional tools if desired
 3.	Install .Net 6.0 framework if it is not already installed on the workstation
-4.  Install the latest version of the Playwright CLI: `dotnet tool install --global Microsoft.Playwright.CLI`
+4.  Install the latest version of the Playwright CLI: 
+```
+dotnet tool install --global Microsoft.Playwright.CLI
+```
 5.  Build the solution and all projects
 6.  Run the command to install Playwright browsers and web drivers: `pwsh bin\Debug\netX\playwright.ps1 install`
-7.  Optional - For Code Coverage Install the Report Generator: `dotnet tool install -g dotnet-reportgenerator-globaltool`
+```
+pwsh bin\Debug\net6.0\playwright.ps1 install
+```
+7.  Optional - For Code Coverage Install the Report Generator:
+```
+dotnet tool install -g dotnet-reportgenerator-globaltool
+```
 
 All other files and libraries will be included in the repository, so there is no need to download them or set them up
 
 # Build
-The solution will build and compile after restoring packages.  Use the menu to build or the keyboard shortcut (often F6).  You can also build the project via the command line using the command `dotnet build`
+The solution will build and compile after restoring packages.  Use the menu to build or the keyboard shortcut (often F6).  You can also build the project via the command line using the command
+```
+dotnet build
+```
 
 # Run
 There are 3 projects in the solution:
@@ -47,25 +59,38 @@ There are 3 projects in the solution:
 - blazor-app.playwright.e2e-tests
 - blazor-app.xunit.unit-tests
 
-blazor-app should be the startup project and can be run through the IDE or via command line using the command `dotnet run`
+blazor-app should be the startup project and can be run through the IDE or via command line using the command
+```
+dotnet run
+```
 
 ## Unit Tests
 Unit tests are utilizing the XUnit project template and runner adapters.  The unit test project was created using the bUnit project template
 
 There are a few options to run the tests:
 1. Using the Visual Studio Text Explorer
-2. Command line `dotnet test`
+2. Command line
+```
+dotnet test
+```
 
 When writing unit tests, it is key that each test create a new instance of the text context to render the component.  There does not appear to be a way to set the context as a test class variable.
 
 ### Collect Code Coverage
 The version of Visual studio will determine ways to get code coverage.  By far the easiest way is if using Visual Studio Enterprise as that has the tools and reporting built in.  If using any other version of Visual Studio the following steps will be needed for XUnit
 
-1. Install the report generator as a global tool `dotnet tool install -g dotnet-reportgenerator-globaltool`
+1. Install the report generator as a global tool
+```
+dotnet tool install -g dotnet-reportgenerator-globaltool
+```
 2. In the directory containing the .sln file run the following command to generate a cobertura xml file
-`dotnet test --collect:"XPlat Code Coverage"`
+```
+dotnet test --collect:"XPlat Code Coverage"
+```
 3. To generate a user friendly report run the following command
-`reportgenerator -reports:"<Path>\coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html`
+```
+reportgenerator -reports:"<Path>\coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html
+```
 
 In the root directory containing the .sln file this will create a directory named coveragereport.  Inside coveragereport there will be html files that can be opened and viewed in the browser.
 
@@ -141,7 +166,10 @@ For more information on runsettings visit [Run Settings](https://docs.microsoft.
 
 Runsettings can also be set through the cli via the -s or --settings parameter of the dotnet test command.  This could be useful if needing to run the tests using a headless browser, like would be needed in a build pipeline.
 `dotnet test --settings=<filename>`
-`dotnet test --settings=.runsettings`
+
+```
+dotnet test --settings=.runsettings
+```
 
 Visit [dotnet test cli](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test) for more information
 
