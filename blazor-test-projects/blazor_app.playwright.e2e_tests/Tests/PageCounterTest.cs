@@ -34,15 +34,20 @@ namespace blazor_app.playwright.e2e_tests.Tests
         [Test, Order(2)]
         public async Task Counter_HasPageHeader()
         {
-            var locator = Page.Locator("id=page-header");
-            await Expect(locator).ToHaveTextAsync("Counter");
+            // Test in a number of ways following Playwright best practices
+
+            // Test getting element by Aria Role
+            await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Counter"})).ToBeVisibleAsync();
+
+            // Test getting by data-testid
+            await Expect(Page.GetByTestId("page-header")).ToHaveTextAsync("Counter");
         }
 
         [Test, Order(3)]
         public async Task Counter_CountShouldStartAtZero()
         {
             //Initial value when the page loads should be 0
-            var locator = Page.Locator("id=current-count");
+            var locator = Page.GetByTestId("current-count");
             await Expect(locator).ToHaveTextAsync("Current count: 0");
         }
 
@@ -53,10 +58,10 @@ namespace blazor_app.playwright.e2e_tests.Tests
             {
                 //loop through the test case number of clicks
                 //Clicking the count button should increment the counter text
-                await Page.ClickAsync("id=btn-count");
+                await Page.GetByTestId("btn-count").ClickAsync();
             }
 
-            var locator = Page.Locator("id=current-count");
+            var locator = Page.GetByTestId("current-count");
             await Expect(locator).ToHaveTextAsync($"Current count: {numberOfClicks}");
         }
     }

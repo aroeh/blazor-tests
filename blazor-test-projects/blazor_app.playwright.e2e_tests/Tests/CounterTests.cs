@@ -29,7 +29,7 @@
         [Test, Order(2)]
         public async Task Counter_HasPageHeader()
         {
-            var headerText = await browser.Page.TextContentAsync("id=page-header");
+            var headerText = await browser.Page.GetByTestId("page-header").TextContentAsync();
 
             Assert.AreEqual("Counter", headerText);
         }
@@ -37,7 +37,7 @@
         [Test, Order(3)]
         public async Task Counter_CountShouldStartAtZero()
         {
-            var counterText = await browser.Page.TextContentAsync("id=current-count");
+            var counterText = await browser.Page.GetByTestId("current-count").TextContentAsync();
 
             //Initial value when the page loads should be 0
             Assert.AreEqual("Current count: 0", counterText);
@@ -50,10 +50,10 @@
             {
                 //loop through the test case number of clicks
                 //Clicking the count button should increment the counter text
-                await browser.Page.ClickAsync("id=btn-count");
+                await browser.Page.GetByTestId("btn-count").ClickAsync();
             }
 
-            var counterText = await browser.Page.TextContentAsync("id=current-count");
+            var counterText = await browser.Page.GetByTestId("current-count").TextContentAsync();
 
             //Initial value when the page loads should be 0
             Assert.AreEqual($"Current count: {numberOfClicks}", counterText);

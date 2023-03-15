@@ -142,6 +142,14 @@ dotnet test -- Playwright.BrowserName=chromium Playwright.LaunchOptions.Headless
 dotnet test -- Playwright.BrowserName=firefox Playwright.LaunchOptions.Headless=false
 ```
 
+> Note: if headless is false, you may want to slow down the execution so you can see the test occurring.  Add the following parameter and adjust the time
+```
+Playwright.LaunchOptions.SlowMo=200
+```
+```
+dotnet test -- Playwright.BrowserName=chromium Playwright.LaunchOptions.Headless=false Playwright.LaunchOptions.Channel=msedge Playwright.LaunchOptions.SlowMo=200
+```
+
 ```
 dotnet test --settings=edge.runsettings
 ```
